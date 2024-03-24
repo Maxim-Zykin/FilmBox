@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     let buttonAlamofire = CustomButtons(title: "Alamofire", fontSize: .med)
     
-    var resultTextField = CustomTextField(filedTypr: .result)
+    var resultTextView = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         self.view.addSubview(serchTextField)
         self.view.addSubview(buttonURLSession)
         self.view.addSubview(buttonAlamofire)
-        self.view.addSubview(resultTextField)
+        self.view.addSubview(resultTextView)
         
         serchTextField.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -52,11 +52,11 @@ class ViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-        resultTextField.snp.makeConstraints { make in
+        resultTextView.snp.makeConstraints { make in
             make.top.equalTo(buttonAlamofire.snp_bottomMargin).inset(-40)
             make.left.equalTo(20)
             make.right.equalTo(-20)
-            make.height.equalTo(350)
+            make.height.equalTo(550)
         }
     }
     
@@ -78,11 +78,14 @@ class ViewController: UIViewController {
         
         let tast = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
-                self.resultTextField.text = error.localizedDescription
+                self.resultTextView.text = error.localizedDescription
             } else {
                 if let data = data, let json = try?JSONSerialization.jsonObject(with: data, options: []) {
+                    
+                    let convertedString = String(data: data, encoding: .utf8)
+                    
                     DispatchQueue.main.async {
-                        self.resultTextField.text = json as? String
+                        self.resultTextView.text = convertedString
                         print(json)
                     }
                 }
