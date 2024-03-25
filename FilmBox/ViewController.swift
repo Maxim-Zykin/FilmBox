@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -62,7 +63,7 @@ class ViewController: UIViewController {
     
     func addTarget() {
         self.buttonURLSession.addTarget(self, action: #selector(tapURLSesion), for: .touchUpInside)
-        
+        self.buttonAlamofire.addTarget(self, action: #selector(tapAlamofire), for: .touchUpInside)
     }
 
     @objc func tapURLSesion() {
@@ -86,12 +87,27 @@ class ViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         self.resultTextView.text = convertedString
-                        print(json)
                     }
                 }
             }
         }
         tast.resume()
+    }
+    
+    @objc func tapAlamofire() async {
+        guard let serchFilm = serchTextField.text else { return }
+        
+        let url = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=\(serchFilm)"
+        let apiKey = "6fda98fe-18df-45e9-b5f8-8888ca001b5d"
+        let urlString = URL(string: url)
+        
+        let dataTask = AF.request(url)
+        let decoded = dataTask.serializingDecodable(String.self)
+        let response = await decoded.response
+        let result = response.result
+        
+        print(result)
+
     }
     
 }
