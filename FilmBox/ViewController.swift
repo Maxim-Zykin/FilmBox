@@ -94,16 +94,18 @@ class ViewController: UIViewController {
         tast.resume()
     }
     
-    @objc func tapAlamofire() async {
+    @objc func tapAlamofire() {
         guard let serchFilm = serchTextField.text else { return }
         
         let url = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=\(serchFilm)"
         let apiKey = "6fda98fe-18df-45e9-b5f8-8888ca001b5d"
         let urlString = URL(string: url)
         
-        let dataTask = AF.request(url)
+        let header = ["X-API-KEY": apiKey]
+        
+        let dataTask = AF.request(urlString!, method: .get, headers: header)
         let decoded = dataTask.serializingDecodable(String.self)
-        let response = await decoded.response
+        let response = decoded.response
         let result = response.result
         
         print(result)
