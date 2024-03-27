@@ -103,16 +103,18 @@ class ViewController: UIViewController {
         
         let headers: HTTPHeaders = ["X-API-KEY": apiKey]
         AF.request(urlString!, headers: headers).responseString(completionHandler: { result in
+            let resp = String (bytes: result.data!, encoding: . utf8)
+            
             let res = result
             DispatchQueue.main.async {
-                self.resultTextView.text = res as? String
+                self.resultTextView.text = resp
                 print(res)
             }
         })
 //
-//        let dataTask = AF.request(urlString!, method: .get, headers: header)
+//        let dataTask = AF.request(urlString!, method: .get, headers: headers)
 //        let decoded = dataTask.serializingDecodable(String.self)
-//        let response = decoded.response
+//        let response = await decoded.response
 //        let result = response.result
 //        
 //        print(result)
