@@ -101,14 +101,21 @@ class ViewController: UIViewController {
         let apiKey = "6fda98fe-18df-45e9-b5f8-8888ca001b5d"
         let urlString = URL(string: url)
         
-        let header = ["X-API-KEY": apiKey]
-        
-        let dataTask = AF.request(urlString!, method: .get, headers: header)
-        let decoded = dataTask.serializingDecodable(String.self)
-        let response = decoded.response
-        let result = response.result
-        
-        print(result)
+        let headers: HTTPHeaders = ["X-API-KEY": apiKey]
+        AF.request(urlString!, headers: headers).responseString(completionHandler: { result in
+            let res = result
+            DispatchQueue.main.async {
+                self.resultTextView.text = res as? String
+                print(res)
+            }
+        })
+//
+//        let dataTask = AF.request(urlString!, method: .get, headers: header)
+//        let decoded = dataTask.serializingDecodable(String.self)
+//        let response = decoded.response
+//        let result = response.result
+//        
+//        print(result)
 
     }
     
