@@ -105,10 +105,9 @@ class ViewController: UIViewController {
         AF.request(urlString!, headers: headers).responseString(completionHandler: { result in
             let resp = String (bytes: result.data!, encoding: . utf8)
             
-            let res = result
             DispatchQueue.main.async {
                 self.resultTextView.text = resp
-                print(res)
+                print(resp)
             }
         })
 //
