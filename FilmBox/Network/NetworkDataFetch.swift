@@ -7,29 +7,24 @@
 
 import Foundation
 
-class NetworkDataFetch<T: Decodable> {
+class NetworkDataFetch {
     
-    static func fetchMovies(url: String, completion: @escaping(Result<T, NetworkError>) -> Void) {
-        NetworkRequest.requestDataFetch(url: url) { result in
+  static func fetchMovies(urlString: String, responce: @escaping (MovieCellModel?, Error?) -> ()) {
+        
+        NetworkRequest.requestDataFetch(url: urlString) { result in
             switch result {
             case .success(let data):
                 do {
-                    let json = try JSONDecoder().decode(T.self, from: data)
-                    completion(json as! Result<T, NetworkError>)
-                }  catch let error {
-                    print("Failed to decode JSON", error)
+                    let json = try JSONDecoder().decode(MovieCellModel.self, from: data)
+                    responce (json, nil)
+                } catch let jsonError {
+                    print("Failed to decode JSON", jsonError)
                 }
             case .failure(let error):
-                completion(.failure(.error(err: "\(error)")))
+                print("Error received requesting data \(error.localizedDescription)")
+                responce(nil, error)
             }
         }
     }
 }
 
-
-enum NetworkError: Error {
-    case invalidResponse
-    case invalidData
-    case decodingError(err: String)
-    case error(err: String)
-}
