@@ -148,7 +148,7 @@ extension HomePageViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailMovieVC = MovieDetailViewController()
         let movie = viewModel.viewModelForSelectedRow(at: indexPath)
-        detailMovieVC.movieId = movie.filmId
+        detailMovieVC.movieId = movie
        // detailMovieVC.kinopoiskChartLabel.text = movie.nameRu
         present(detailMovieVC, animated: true)
     }

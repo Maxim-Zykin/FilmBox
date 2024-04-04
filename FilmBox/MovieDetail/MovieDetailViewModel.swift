@@ -17,7 +17,7 @@ protocol MovieDetailViewModelProtocol {
 //    var year: Int { get }
 //    var filmLength: String? { get }
     var description: String? { get }
-    init(movie: MoviesSearch)
+    init(movie: Movie)
 }
 
 class MovieDetailViewModel: MovieDetailViewModelProtocol {
@@ -46,22 +46,22 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
         movie.ratingImdb ?? 0.0
     }
     
-//    var year: Int {
-//        movie.year
-//    }
-//    
-//    var filmLength: String? {
-//        String(movie.filmLength ?? 0)
-//       
-//    }
+    var year: Int {
+        movie.year ?? 0
+    }
+    
+    var filmLength: String? {
+        String(movie.filmLength ?? 0)
+       
+    }
     
     var description: String? {
         movie.description ?? ""
     }
     
-    private var movie: MoviesSearch
+    private var movie: Movie
     
-    required init(movie: MoviesSearch) {
+    required init(movie: Movie) {
         self.movie = movie
     }
 }

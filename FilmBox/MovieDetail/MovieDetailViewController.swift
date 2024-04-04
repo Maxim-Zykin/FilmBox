@@ -26,11 +26,11 @@ class MovieDetailViewController: UIViewController {
     
     var descriptionLabel = CustomLabel(text: "", textAlignment: .justified, size: 16, color: .white, numberOfLines: 0)
     
-    private let productionYearLabel = CustomLabel(text: "Год производства", size: 17, color: .white)
+    private let productionYearLabel = CustomLabel(text: "Год производства:", size: 17, color: .gray)
     
     var productionYearInfoLabel = CustomLabel(text: "", size: 17, color: .white)
     
-    private let durationLabel = CustomLabel(text: "Продолжительность", size: 17, color: .white)
+    private let durationLabel = CustomLabel(text: "Продолжительность:", size: 17, color: .gray)
     
     var durationInfoLabel = CustomLabel(text: "", size: 17, color: .white, numberOfLines: 0)
     
@@ -42,14 +42,14 @@ class MovieDetailViewController: UIViewController {
         fetchMovie()
     }
     
-    private func setupModel(model: MoviesSearch) {
+    private func setupModel(model: Movie) {
         kinopoiskChartLabel.text = String(describing: model.ratingKinopoisk ?? 0.0)
         imdbChartLabel.text = String(describing: model.ratingImdb ?? 0.0)
         movieNameRuLabel.text = model.nameRu ?? ""
         movieNameEnLabel.text = model.nameOriginal ?? ""
         descriptionLabel.text = model.description ?? ""
-//        productionYearInfoLabel.text = String(describing: model.year ?? 0)
-//        durationInfoLabel.text = "\(String(describing: model.filmLength)) мин."
+        productionYearInfoLabel.text = String(describing: model.year ?? 0)
+        durationInfoLabel.text = "\(String(describing: model.filmLength ?? 0)) мин."
         
         guard let urlPoster = model.posterUrl else { return }
         setupImage(urlString: urlPoster)
@@ -145,6 +145,26 @@ class MovieDetailViewController: UIViewController {
            make.top.equalTo(movieNameEnLabel.snp.bottom).offset(15)
            make.left.equalToSuperview().offset(20)
            make.right.equalToSuperview().offset(-20)
+       }
+       
+       productionYearLabel.snp.makeConstraints { make in
+           make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
+           make.left.equalToSuperview().offset(20)
+       }
+       
+       productionYearInfoLabel.snp.makeConstraints { make in
+           make.top.equalTo(productionYearLabel.snp.bottom).offset(6)
+           make.left.equalToSuperview().offset(20)
+       }
+       
+       durationLabel.snp.makeConstraints { make in
+           make.top.equalTo(productionYearInfoLabel.snp.bottom).offset(6)
+           make.left.equalToSuperview().offset(20)
+       }
+       
+       durationInfoLabel.snp.makeConstraints { make in
+           make.top.equalTo(durationLabel.snp.bottom).offset(6)
+           make.left.equalToSuperview().offset(20)
        }
     }
 }

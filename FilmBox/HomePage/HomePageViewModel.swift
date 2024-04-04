@@ -13,7 +13,7 @@ protocol HomePageViewModelProtocol {
     func fetchMoviesSerch(nameFilm: String, completion: @escaping () -> Void)
     func numberOfRows() -> Int
     func cellViewModel(at indexPath: IndexPath) -> MovieTableViewModelCellProtocol
-    func viewModelForSelectedRow(at indexPath: IndexPath) -> MovieDetailViewModelProtocol
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> Int
     
 }
 
@@ -58,8 +58,8 @@ class HomePageViewModel: HomePageViewModelProtocol {
         return MovieTableViewModelCell(movie: movies)
     }
     
-    func viewModelForSelectedRow(at indexPath: IndexPath) -> MovieDetailViewModelProtocol {
-        let detail = movies[indexPath.row]
-        return MovieDetailViewModel(movie: detail)
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> Int {
+        let detail = movies[indexPath.row].filmId ?? 0
+        return detail
     }
 }
