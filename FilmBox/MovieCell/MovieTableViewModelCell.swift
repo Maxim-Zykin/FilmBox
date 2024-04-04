@@ -10,17 +10,22 @@ import UIKit
 protocol MovieTableViewModelCellProtocol {
     var image: String? { get }
     var name: String { get }
+    var filmId: Int? { get }
     init(movie: MoviesSearch)
 }
 
 class MovieTableViewModelCell: MovieTableViewModelCellProtocol {
     
     var image: String? {
-        movie.posterUrl
+        movie.posterUrl ?? ""
     }
     
     var name: String {
         movie.nameRu ?? ""
+    }
+    
+    var filmId: Int? {
+        movie.filmId ?? 0
     }
     
     private var movie: MoviesSearch

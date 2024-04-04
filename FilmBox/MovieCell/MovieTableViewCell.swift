@@ -68,6 +68,7 @@ class MovieTableViewCell: UITableViewCell {
         nameMovie.snp.makeConstraints { make in
             make.centerYWithinMargins.equalTo(poster.snp_centerYWithinMargins)
             make.left.equalTo(poster.snp_leftMargin).inset(80)
+            make.right.equalTo(-5)
         }
     }
 }

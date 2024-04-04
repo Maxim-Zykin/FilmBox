@@ -14,6 +14,11 @@ struct MovieCellModel: Decodable, Equatable {
 struct MoviesSearch: Decodable, Equatable {
     let filmId: Int?
     let nameRu: String?
-    let nameEn: String?
+    let nameOriginal: String?
     let posterUrl: String?
+    let ratingKinopoisk: Double?
+    let ratingImdb: Double?
+ //   let year: Int?
+ //   let filmLength: Int?
+    let description: String?
 }
