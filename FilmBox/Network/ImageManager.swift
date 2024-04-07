@@ -7,14 +7,14 @@
 
 import Foundation
 
-class ImageManager {
-    static let shared = ImageManager()
-    
-    private init() {}
-    
-    func fetchImage(from url: URL?) -> Data? {
-        guard let url = url else { return nil}
-        guard let imageData = try? Data(contentsOf: url) else { return nil}
-        return imageData
-    }
-}
+//class ImageManager {
+//    static let shared = ImageManager()
+//    
+//    private init() {}
+//    
+//    func fetchImage(from url: URL?) -> String? {
+//        guard let url = url else { return nil}
+//        guard let imageData = try? String(contentsOf: url) else { return nil}
+//        return imageData
+//    }
+//}

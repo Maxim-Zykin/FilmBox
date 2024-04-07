@@ -23,7 +23,7 @@ class HomePageViewController: UIViewController {
     private let serchTextField = CustomTextField(filedTypr: .search)
     
     private let buttonSerch = CustomButtons(title: "Поиск", fontSize: .med)
-    private let buttonHit = CustomButtons(title: "Популярные", fontSize: .med)
+//    private let buttonHit = CustomButtons(title: "Популярные", fontSize: .med)
     
     private var table: UITableView = {
         let tableView = UITableView()
@@ -37,14 +37,12 @@ class HomePageViewController: UIViewController {
     private var viewModel: HomePageViewModelProtocol! {
         didSet {
             viewModel.fetchMovies {
-              //  DispatchQueue.main.async {
+                DispatchQueue.main.async {
                 self.table.reloadData()
-             //   }
+                }
             }
         }
     }
-    
-    var movies = [MoviesSearch]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +51,11 @@ class HomePageViewController: UIViewController {
         addTarget()
         table.dataSource = self
         table.delegate = self
-        
     }
-    
     
     func addTarget() {
         buttonSerch.addTarget(self, action: #selector(tabSerch), for: .touchUpInside)
-        buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
+//        buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
     }
     
     @objc func tabSerch() {
@@ -67,7 +63,7 @@ class HomePageViewController: UIViewController {
         
         viewModel.fetchMoviesSerch(nameFilm: movieName) {
             DispatchQueue.main.async {
-                self.table.reloadData()
+             //   self.table.reloadData()
             }
         }
         self.table.reloadData()
@@ -87,7 +83,7 @@ class HomePageViewController: UIViewController {
         self.view.addSubview(serchTextField)
         self.view.addSubview(buttonSerch)
         self.view.addSubview(table)
-        self.view.addSubview(buttonHit)
+//        self.view.addSubview(buttonHit)
         
         lableApp.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -108,12 +104,12 @@ class HomePageViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-        buttonHit.snp.makeConstraints { make in
-            make.top.equalTo(lableApp.snp_bottomMargin).inset(-60)
-            make.left.equalTo(serchTextField.snp_rightMargin).inset(-20)
-            make.width.equalTo(90)
-            make.height.equalTo(40)
-        }
+//        buttonHit.snp.makeConstraints { make in
+//            make.top.equalTo(lableApp.snp_bottomMargin).inset(-60)
+//            make.left.equalTo(serchTextField.snp_rightMargin).inset(-20)
+//            make.width.equalTo(90)
+//            make.height.equalTo(40)
+//        }
         
         table.snp.makeConstraints { make in
             make.top.equalTo(serchTextField.snp_bottomMargin).inset(-30)
@@ -149,10 +145,7 @@ extension HomePageViewController: UITableViewDelegate{
         let detailMovieVC = MovieDetailViewController()
         let movie = viewModel.viewModelForSelectedRow(at: indexPath)
         detailMovieVC.movieId = movie
-       // detailMovieVC.kinopoiskChartLabel.text = movie.nameRu
         present(detailMovieVC, animated: true)
     }
 }
-
-
 

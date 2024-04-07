@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomePageViewModelProtocol {
-    var movies: [MoviesSearch] { get }
+    var movies: [MoviesSearch] { get set }
     func fetchMovies(completion: @escaping() -> Void)
     func fetchMoviesSerch(nameFilm: String, completion: @escaping () -> Void)
     func numberOfRows() -> Int
@@ -19,7 +19,7 @@ protocol HomePageViewModelProtocol {
 
 class HomePageViewModel: HomePageViewModelProtocol {
     
-    var movies = [MoviesSearch]()
+    var movies: [MoviesSearch] = []
     
     func fetchMovies(completion: @escaping () -> Void) {
        let url = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS"
@@ -28,7 +28,7 @@ class HomePageViewModel: HomePageViewModelProtocol {
             if error == nil {
                 guard let popularMovieCellModel = popularMovieCellModel else { return }
                 self?.movies = popularMovieCellModel.films
-                print("успех, \(self!.movies.count)")
+                print("успеХ, \(self!.movies.count)")
             } else {
                 print(error!.localizedDescription)
             }
@@ -36,12 +36,14 @@ class HomePageViewModel: HomePageViewModelProtocol {
     }
     
     func fetchMoviesSerch(nameFilm: String, completion: @escaping () -> Void) {
+       // movies.removeAll()
        let url = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=\(nameFilm)"
         NetworkDataFetch.fetchMovies(urlString: url) { [weak self] popularMovieCellModel,
             error in
             if error == nil {
                 guard let popularMovieCellModel = popularMovieCellModel else { return }
                 self?.movies = popularMovieCellModel.films
+                    //.append(contentsOf: popularMovieCellModel.films)
                 print("успех, \(self!.movies.count)")
             } else {
                 print(error!.localizedDescription)

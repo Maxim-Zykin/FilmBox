@@ -31,7 +31,9 @@ class MovieTableViewCell: UITableViewCell {
                     switch result {
                     case .success(let data):
                         let image = UIImage(data: data)
-                        self?.poster.image = image
+                        DispatchQueue.main.async {
+                            self?.poster.image = image
+                        }
                     case .failure(let error):
                         self?.poster.image = nil
                         print("No album image" + error.localizedDescription)

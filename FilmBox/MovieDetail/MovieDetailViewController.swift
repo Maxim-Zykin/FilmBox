@@ -105,14 +105,14 @@ class MovieDetailViewController: UIViewController {
         self.view.addSubview(durationInfoLabel)
        
        imageMovie.snp.makeConstraints { make in
-           make.height.equalTo(230)
+           make.height.equalTo(240)
            make.width.equalTo(170)
            make.top.equalToSuperview().inset(20)
            make.left.equalTo(30)
        }
        
        kinopoiskLabel.snp.makeConstraints { make in
-           make.top.equalToSuperview().inset(20)
+           make.top.equalToSuperview().inset(70)
            make.left.equalTo(imageMovie.snp.right).offset(60)
        }
        
