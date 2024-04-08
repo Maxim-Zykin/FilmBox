@@ -62,8 +62,12 @@ class MovieDetailViewController: UIViewController {
             NetworkRequest.requestDataFetch(url: url) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    let image = UIImage(data: data)
-                    self?.imageMovie.image = image
+                    DispatchQueue.global().async {
+                        let image = UIImage(data: data)
+                        DispatchQueue.main.async {
+                            self?.imageMovie.image = image
+                        }
+                    }
                 case .failure(let error):
                     self?.imageMovie.image = nil
                     print("No album image" + error.localizedDescription)

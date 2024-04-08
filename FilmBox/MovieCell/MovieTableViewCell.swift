@@ -30,9 +30,11 @@ class MovieTableViewCell: UITableViewCell {
                 NetworkRequest.requestDataFetch(url: urlString) { [weak self] result in
                     switch result {
                     case .success(let data):
-                        let image = UIImage(data: data)
-                        DispatchQueue.main.async {
-                            self?.poster.image = image
+                        DispatchQueue.global().async {
+                            let image = UIImage(data: data)
+                            DispatchQueue.main.async {
+                                self?.poster.image = image
+                            }
                         }
                     case .failure(let error):
                         self?.poster.image = nil

@@ -23,7 +23,7 @@ class HomePageViewController: UIViewController {
     private let serchTextField = CustomTextField(filedTypr: .search)
     
     private let buttonSerch = CustomButtons(title: "Поиск", fontSize: .med)
-//    private let buttonHit = CustomButtons(title: "Популярные", fontSize: .med)
+    private let buttonHit = CustomButtons(title: "Популярные фильмы", fontSize: .med)
     
     private var table: UITableView = {
         let tableView = UITableView()
@@ -44,6 +44,7 @@ class HomePageViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomePageViewModel()
@@ -55,15 +56,14 @@ class HomePageViewController: UIViewController {
     
     func addTarget() {
         buttonSerch.addTarget(self, action: #selector(tabSerch), for: .touchUpInside)
-//        buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
+        buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
     }
     
     @objc func tabSerch() {
         guard let movieName = serchTextField.text else { return }
-        
         viewModel.fetchMoviesSerch(nameFilm: movieName) {
             DispatchQueue.main.async {
-             //   self.table.reloadData()
+               self.table.reloadData()
             }
         }
         self.table.reloadData()
@@ -75,6 +75,7 @@ class HomePageViewController: UIViewController {
                 self.table.reloadData()
             }
         }
+        self.table.reloadData()
     }
     
     func setupUI() {
@@ -83,7 +84,7 @@ class HomePageViewController: UIViewController {
         self.view.addSubview(serchTextField)
         self.view.addSubview(buttonSerch)
         self.view.addSubview(table)
-//        self.view.addSubview(buttonHit)
+        self.view.addSubview(buttonHit)
         
         lableApp.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -104,15 +105,16 @@ class HomePageViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-//        buttonHit.snp.makeConstraints { make in
-//            make.top.equalTo(lableApp.snp_bottomMargin).inset(-60)
-//            make.left.equalTo(serchTextField.snp_rightMargin).inset(-20)
-//            make.width.equalTo(90)
-//            make.height.equalTo(40)
-//        }
+        buttonHit.snp.makeConstraints { make in
+            make.top.equalTo(buttonSerch.snp_bottomMargin).offset(20)
+            make.left.equalTo(20)
+            make.right.equalTo(-20)
+           // make.width.equalTo(190)
+            make.height.equalTo(40)
+        }
         
         table.snp.makeConstraints { make in
-            make.top.equalTo(serchTextField.snp_bottomMargin).inset(-30)
+            make.top.equalTo(buttonHit.snp_bottomMargin).inset(-30)
             make.left.equalTo(20)
             make.right.equalTo(-20)
             make.height.equalTo(1000)
