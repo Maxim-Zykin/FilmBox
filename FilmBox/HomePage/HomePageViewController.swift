@@ -23,7 +23,7 @@ class HomePageViewController: UIViewController {
     private let serchTextField = CustomTextField(filedTypr: .search)
     
     private let buttonSerch = CustomButtons(title: "Поиск", fontSize: .med)
-    private let buttonHit = CustomButtons(title: "Популярные фильмы", fontSize: .med)
+   // private let buttonHit = CustomButtons(title: "Популярные фильмы", fontSize: .med)
     
     private var table: UITableView = {
         let tableView = UITableView()
@@ -56,7 +56,7 @@ class HomePageViewController: UIViewController {
     
     func addTarget() {
         buttonSerch.addTarget(self, action: #selector(tabSerch), for: .touchUpInside)
-        buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
+       // buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
     }
     
     @objc func tabSerch() {
@@ -66,17 +66,16 @@ class HomePageViewController: UIViewController {
                self.table.reloadData()
             }
         }
-        self.table.reloadData()
     }
-    
-    @objc func tabSerch2() {
-        viewModel.fetchMovies {
-            DispatchQueue.main.async {
-                self.table.reloadData()
-            }
-        }
-        self.table.reloadData()
-    }
+//    
+//    @objc func tabSerch2() {
+//        viewModel.fetchMovies {
+//            DispatchQueue.main.async {
+//                self.table.reloadData()
+//            }
+//        }
+//        self.table.reloadData()
+//    }
     
     func setupUI() {
         view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 255/255)
@@ -84,7 +83,7 @@ class HomePageViewController: UIViewController {
         self.view.addSubview(serchTextField)
         self.view.addSubview(buttonSerch)
         self.view.addSubview(table)
-        self.view.addSubview(buttonHit)
+      //  self.view.addSubview(buttonHit)
         
         lableApp.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
@@ -105,16 +104,16 @@ class HomePageViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-        buttonHit.snp.makeConstraints { make in
-            make.top.equalTo(buttonSerch.snp_bottomMargin).offset(20)
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-           // make.width.equalTo(190)
-            make.height.equalTo(40)
-        }
+//        buttonHit.snp.makeConstraints { make in
+//            make.top.equalTo(buttonSerch.snp_bottomMargin).offset(20)
+//            make.left.equalTo(20)
+//            make.right.equalTo(-20)
+//           // make.width.equalTo(190)
+//            make.height.equalTo(40)
+//        }
         
         table.snp.makeConstraints { make in
-            make.top.equalTo(buttonHit.snp_bottomMargin).inset(-30)
+            make.top.equalTo(buttonSerch.snp_bottomMargin).inset(-30)
             make.left.equalTo(20)
             make.right.equalTo(-20)
             make.height.equalTo(1000)

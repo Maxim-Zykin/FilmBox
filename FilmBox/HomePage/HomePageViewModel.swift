@@ -29,6 +29,7 @@ class HomePageViewModel: HomePageViewModelProtocol {
                 guard let popularMovieCellModel = popularMovieCellModel else { return }
                 self?.movies = popularMovieCellModel.films
                 print("успеХ, \(self!.movies.count)")
+                completion()
             } else {
                 print(error!.localizedDescription)
             }
@@ -45,6 +46,7 @@ class HomePageViewModel: HomePageViewModelProtocol {
                 self?.movies = popularMovieCellModel.films
                     //.append(contentsOf: popularMovieCellModel.films)
                 print("успех, \(self!.movies.count)")
+                completion()
             } else {
                 print(error!.localizedDescription)
             }
