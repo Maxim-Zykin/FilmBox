@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 
-class HomePageViewController: UIViewController {
+class HomePageViewController: UIViewController, UITextFieldDelegate {
+    
+    private var isSearch = true
     
     private let lableApp: UILabel = {
         let label = UILabel()
@@ -36,6 +38,7 @@ class HomePageViewController: UIViewController {
     
     private var viewModel: HomePageViewModelProtocol! {
         didSet {
+            self.isSearch = false
             viewModel.fetchMovies {
                 DispatchQueue.main.async {
                 self.table.reloadData()
@@ -52,6 +55,12 @@ class HomePageViewController: UIViewController {
         addTarget()
         table.dataSource = self
         table.delegate = self
+        serchTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(userText: UITextField!) -> Bool {
+        userText.resignFirstResponder()
+        return true;
     }
     
     func addTarget() {
@@ -59,8 +68,14 @@ class HomePageViewController: UIViewController {
        // buttonHit.addTarget(self, action: #selector(tabSerch2), for: .touchUpInside)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true);
+        }
+    
     @objc func tabSerch() {
+        self.view.endEditing(true)
         guard let movieName = serchTextField.text else { return }
+        self.isSearch = true
         viewModel.fetchMoviesSerch(nameFilm: movieName) {
             DispatchQueue.main.async {
                self.table.reloadData()
@@ -116,10 +131,11 @@ class HomePageViewController: UIViewController {
             make.top.equalTo(buttonSerch.snp_bottomMargin).inset(-30)
             make.left.equalTo(20)
             make.right.equalTo(-20)
-            make.height.equalTo(1000)
+            make.bottom.equalTo(view.snp.bottom)
         }
         
     }
+
 }
 
 
@@ -147,6 +163,16 @@ extension HomePageViewController: UITableViewDelegate{
         let movie = viewModel.viewModelForSelectedRow(at: indexPath)
         detailMovieVC.movieId = movie
         present(detailMovieVC, animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSearch {
+            return "Результаты по запросу: \(serchTextField.text ?? "")"
+        } else {
+            return "Популярные фильмы"
+        }
+        
     }
 }
 

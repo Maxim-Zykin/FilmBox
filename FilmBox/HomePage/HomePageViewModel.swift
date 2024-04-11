@@ -37,14 +37,12 @@ class HomePageViewModel: HomePageViewModelProtocol {
     }
     
     func fetchMoviesSerch(nameFilm: String, completion: @escaping () -> Void) {
-       // movies.removeAll()
        let url = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=\(nameFilm)"
         NetworkDataFetch.fetchMovies(urlString: url) { [weak self] popularMovieCellModel,
             error in
             if error == nil {
                 guard let popularMovieCellModel = popularMovieCellModel else { return }
                 self?.movies = popularMovieCellModel.films
-                    //.append(contentsOf: popularMovieCellModel.films)
                 print("успех, \(self!.movies.count)")
                 completion()
             } else {
