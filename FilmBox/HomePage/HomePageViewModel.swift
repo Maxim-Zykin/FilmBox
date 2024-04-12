@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomePageViewModelProtocol {
-    var movies: [MoviesSearch] { get set }
+    var movies: [MoviesSearch] { get }
     func fetchMovies(completion: @escaping() -> Void)
     func fetchMoviesSerch(nameFilm: String, completion: @escaping () -> Void)
     func numberOfRows() -> Int
