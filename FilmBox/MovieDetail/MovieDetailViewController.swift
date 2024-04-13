@@ -10,11 +10,18 @@ import SnapKit
 
 class MovieDetailViewController: UIViewController {
     
-    let imageMovie: UIImageView = {
+   private let imageMovie: UIImageView = {
         var image = UIImageView()
         image.layer.cornerRadius = 5
         image.layer.masksToBounds = true
         return image
+    }()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .white
+        indicator.startAnimating()
+        return indicator
     }()
     
    private let kinopoiskLabel = CustomLabel(text: "Кинопоиск", size: 17, color: .white)
@@ -71,6 +78,7 @@ class MovieDetailViewController: UIViewController {
                         let image = UIImage(data: data)
                         DispatchQueue.main.async {
                             self?.imageMovie.image = image
+                            self?.activityIndicator.stopAnimating()
                         }
                     }
                 case .failure(let error):
@@ -112,6 +120,7 @@ class MovieDetailViewController: UIViewController {
         self.view.addSubview(productionYearInfoLabel)
         self.view.addSubview(durationLabel)
         self.view.addSubview(durationInfoLabel)
+        self.view.addSubview(activityIndicator)
        
        imageMovie.snp.makeConstraints { make in
            make.height.equalTo(240)
@@ -174,6 +183,10 @@ class MovieDetailViewController: UIViewController {
        durationInfoLabel.snp.makeConstraints { make in
            make.top.equalTo(durationLabel.snp.bottom).offset(6)
            make.left.equalToSuperview().offset(20)
+       }
+       
+       activityIndicator.snp.makeConstraints { make in
+           make.center.equalTo(imageMovie.snp.center)
        }
     }
 }
