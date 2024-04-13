@@ -10,7 +10,12 @@ import SnapKit
 
 class MovieDetailViewController: UIViewController {
     
-    let imageMovie = UIImageView()
+    let imageMovie: UIImageView = {
+        var image = UIImageView()
+        image.layer.cornerRadius = 5
+        image.layer.masksToBounds = true
+        return image
+    }()
     
    private let kinopoiskLabel = CustomLabel(text: "Кинопоиск", size: 17, color: .white)
     

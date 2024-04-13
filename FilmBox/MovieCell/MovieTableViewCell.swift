@@ -12,7 +12,12 @@ class MovieTableViewCell: UITableViewCell {
     
     static let cellID = "cellMovie"
     
-    let poster = UIImageView()
+    let poster: UIImageView = {
+        var image = UIImageView()
+        image.layer.cornerRadius = 5
+        image.layer.masksToBounds = true
+        return image
+    }()
     
     let nameMovie: UILabel! = {
         let label = UILabel()
@@ -63,15 +68,15 @@ class MovieTableViewCell: UITableViewCell {
         contentView.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 255/255)
         
         poster.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(10)
             make.left.equalTo(20)
-            make.height.equalTo(100)
-            make.width.equalTo(70)
+            make.height.equalTo(120)
+            make.width.equalTo(90)
         }
         
         nameMovie.snp.makeConstraints { make in
             make.centerYWithinMargins.equalTo(poster.snp_centerYWithinMargins)
-            make.left.equalTo(poster.snp_leftMargin).inset(80)
+            make.left.equalTo(poster.snp_leftMargin).inset(90)
             make.right.equalTo(-5)
         }
     }
