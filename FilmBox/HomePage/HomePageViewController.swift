@@ -165,6 +165,15 @@ extension HomePageViewController: UITableViewDelegate{
         present(detailMovieVC, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = .darkGray
+        header.tintColor = UIColor(red: 255/255, green: 199/255, blue: 0/255, alpha: 255/255)
+        header.textLabel?.font = UIFont(name: "Helvetica-Regular", size: 15)
+        header.textLabel?.numberOfLines = 0
+    
+        
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if isSearch {
