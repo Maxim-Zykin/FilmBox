@@ -72,6 +72,14 @@ class HomePageViewController: UIViewController, UITextFieldDelegate {
     
     @objc func tabSerch() {
         self.view.endEditing(true)
+        guard serchTextField.text != "" else {
+            viewModel.fetchMovies {
+                DispatchQueue.main.async {
+                self.table.reloadData()
+                }
+            }
+            return }
+        
         guard let movieName = serchTextField.text else { return }
         self.isSearch = true
         viewModel.fetchMoviesSerch(nameFilm: movieName) {
