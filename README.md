@@ -1,9 +1,10 @@
+# FilmBox
 - UIKit and SnapKit
 - URLSession
 - MVVM
 - API kinopoisk.ru
 
-  # Screenshots
+# Screenshots
 
 ![Image 1](https://github.com/Maxim-Zykin/FilmBox/blob/main/1_1.png)
 
