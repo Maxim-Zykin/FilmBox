@@ -22,6 +22,13 @@ class HomePageViewController: UIViewController, UITextFieldDelegate {
     return label
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .white
+        indicator.startAnimating()
+        return indicator
+    }()
+    
     private let serchTextField = CustomTextField(filedTypr: .search)
     
     private let buttonSerch = CustomButtons(title: "Поиск", fontSize: .med)
@@ -41,6 +48,7 @@ class HomePageViewController: UIViewController, UITextFieldDelegate {
             viewModel.fetchMovies {
                 DispatchQueue.main.async {
                 self.table.reloadData()
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -95,10 +103,15 @@ class HomePageViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(serchTextField)
         self.view.addSubview(buttonSerch)
         self.view.addSubview(table)
+        self.view.addSubview(activityIndicator)
         
         lableApp.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(100)
             make.left.equalTo(20)
+        }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(table.snp.center)
         }
         
         serchTextField.snp.makeConstraints { make in
