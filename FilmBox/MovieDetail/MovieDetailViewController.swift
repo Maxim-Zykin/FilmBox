@@ -10,7 +10,7 @@ import SnapKit
 
 class MovieDetailViewController: UIViewController {
     
-   private let imageMovie: UIImageView = {
+    var imageMovie: UIImageView = {
         var image = UIImageView()
         image.layer.cornerRadius = 5
         image.layer.masksToBounds = true
@@ -46,12 +46,18 @@ class MovieDetailViewController: UIViewController {
     
     var durationInfoLabel = CustomLabel(text: "", size: 17, color: .white, numberOfLines: 0)
     
+//    var viewModel: MovieDetailViewModelProtocol! {
+//        didSet {
+//            
+//        }
+//    }
+    
     var movieId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchMovie()
+      //  fetchMovie()
     }
     
     private func setupModel(model: Movie) {
