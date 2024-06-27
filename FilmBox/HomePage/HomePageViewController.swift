@@ -157,33 +157,14 @@ extension HomePageViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         140
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = MovieDetailViewController()
-        let info = viewModel.viewModelForSelectedRow(at: indexPath)
-        
-        detail.kinopoiskChartLabel.text = info.kinopoiskChart
-        detail.imdbChartLabel.text = info.imdbChart
-        detail.movieNameRuLabel.text = info.movieNameRu
-        detail.movieNameEnLabel.text = info.movieNameEn
-        detail.descriptionLabel.text = info.description
-        detail.productionYearInfoLabel.text = info.productionYearInfo
-        detail.durationInfoLabel.text = info.durationInfo
-        
-        DispatchQueue.global().async {
-            guard let image = info.imageData else { return }
-            DispatchQueue.main.async {
-                detail.imageMovie.image = UIImage(data: image)
-            }
-        }
+        let detailMovieVC = MovieDetailViewController()
+        let movie = viewModel.viewModelForSelectedRow(at: indexPath)
+
+        detailMovieVC.movieId = movie
+        present(detailMovieVC, animated: true)
     }
-    
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let detailMovieVC = MovieDetailViewController()
-//        let movie = viewModel.viewModelForSelectedRow(at: indexPath)
-//        detailMovieVC.movieId = movie
-//        present(detailMovieVC, animated: true)
-//    }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
             let header = view as! UITableViewHeaderFooterView

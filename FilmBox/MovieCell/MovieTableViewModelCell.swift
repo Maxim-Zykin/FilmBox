@@ -8,7 +8,6 @@
 import UIKit
 
 protocol MovieTableViewModelCellProtocol {
-  //  var image: String? { get }
     var imageData: Data? { get }
     var name: String { get }
     var filmId: Int? { get }
@@ -22,10 +21,6 @@ class MovieTableViewModelCell: MovieTableViewModelCellProtocol {
         return ImageManager.shared.fetchImage(from: url)
         
     }
-    
-//    var image: String? {
-//        movie.posterUrl ?? ""
-//    }
     
     var name: String {
         movie.nameRu ?? ""

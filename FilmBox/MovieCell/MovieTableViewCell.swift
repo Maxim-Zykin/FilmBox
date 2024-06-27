@@ -37,24 +37,6 @@ class MovieTableViewCell: UITableViewCell {
                     self.poster.image = UIImage(data: image)
                 }
             }
-//            if let urlString = viewModel.image {
-//                NetworkRequest.requestDataFetch(url: urlString) { [weak self] result in
-//                    switch result {
-//                    case .success(let data):
-//                        DispatchQueue.global().async {
-//                            let image = UIImage(data: data)
-//                            DispatchQueue.main.async {
-//                                self?.poster.image = image
-//                            }
-//                        }
-//                    case .failure(let error):
-//                        self?.poster.image = nil
-//                        print("No album image" + error.localizedDescription)
-//                    }
-//                }
-//            } else {
-//                poster.image = nil
-//            }
             nameMovie.text = viewModel.name
         }
     }

@@ -46,18 +46,13 @@ class MovieDetailViewController: UIViewController {
     
     var durationInfoLabel = CustomLabel(text: "", size: 17, color: .white, numberOfLines: 0)
     
-//    var viewModel: MovieDetailViewModelProtocol! {
-//        didSet {
-//            
-//        }
-//    }
     
     var movieId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-      //  fetchMovie()
+        fetchMovie()
     }
     
     private func setupModel(model: Movie) {
