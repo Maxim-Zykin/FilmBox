@@ -65,5 +65,10 @@ class HomePageViewModel: HomePageViewModelProtocol {
         return detail
     }
     
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> MovieDetailViewModel {
+        let detail = movies[indexPath.row].filmId ?? 0
+        let movie = MovieDetailViewModel(movieID: detail)
+        return movie
+    }
 
 }

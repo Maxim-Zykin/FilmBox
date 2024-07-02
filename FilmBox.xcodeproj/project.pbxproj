@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C13A0AC2C2C6F3800A4BDE4 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C13A0AB2C2C6F3800A4BDE4 /* MovieDetailViewModel.swift */; };
 		0C4F456D2BBAEC9B0018D257 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F456C2BBAEC9B0018D257 /* MovieDetailViewController.swift */; };
 		0C50443F2BB054E300B0FF6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C50443E2BB054E300B0FF6C /* AppDelegate.swift */; };
 		0C5044412BB054E300B0FF6C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5044402BB054E300B0FF6C /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C13A0AB2C2C6F3800A4BDE4 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		0C4F456C2BBAEC9B0018D257 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		0C50443B2BB054E300B0FF6C /* FilmBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C50443E2BB054E300B0FF6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				0C4F456C2BBAEC9B0018D257 /* MovieDetailViewController.swift */,
+				0C13A0AB2C2C6F3800A4BDE4 /* MovieDetailViewModel.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				0C5044412BB054E300B0FF6C /* SceneDelegate.swift in Sources */,
 				0C4F456D2BBAEC9B0018D257 /* MovieDetailViewController.swift in Sources */,
 				0C5044562BB0587A00B0FF6C /* CustomTextField.swift in Sources */,
+				0C13A0AC2C2C6F3800A4BDE4 /* MovieDetailViewModel.swift in Sources */,
 				0CA29D3A2BB8525E006323D8 /* NetworkRequest.swift in Sources */,
 				0C5044542BB0572C00B0FF6C /* CustomLable.swift in Sources */,
 			);
